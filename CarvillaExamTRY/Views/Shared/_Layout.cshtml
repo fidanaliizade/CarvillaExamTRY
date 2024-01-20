@@ -97,6 +97,10 @@
 
 										</li>
 									<li ><a asp-controller="Account" asp-action="Logout">Log Out</a></li>
+									if(User.IsInRole("Admin"))
+									{
+									<li ><a asp-area="Manage" asp-controller="Services" asp-action="Index">Admin Panel</a></li>
+									}
 								}
 								else
 								{

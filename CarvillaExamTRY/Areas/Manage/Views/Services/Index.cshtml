@@ -3,7 +3,8 @@
 @model List<Service>
  <!-- Begin Page Content -->
 				<div class="container-fluid">
-
+<a  class="btn btn-primary" style="margin-left:90%" asp-controller="Services" asp-action="Create" >Create</a>
+<a  class="btn btn-primary" style="margin-right:90%" asp-area=""  asp-controller="Home" asp-action="Index" >Home</a>
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
 					<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -25,7 +26,7 @@
 											<th>Description</th>
 											<th>Icon</th>
 											<th>Action</th>
-											<th>Salary</th>
+										
 										</tr>
 									</thead>
 
@@ -36,12 +37,41 @@
 											<td>@item.Id</td>
 											<td>@item.Title</td>
 											<td>@item.Description</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
+											<td>@Html.Raw(item.Icon)</td>
+											<td>
+												<a class="btn btn-secondary" asp-controller="Services" asp-action="Update" asp-route-id=@item.Id>
+													Update
+												</a>
+														<a class="btn btn-danger" asp-controller="Services" asp-action="Delete" asp-route-id=@item.Id>
+															Delete
+													</a>
+											</td>
+											
 										</tr>
 							
 						}
+
+
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="~/assets/js/jquery.js"></script>
+
+		<!--modernizr.min.js-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+		<!--bootstrap.min.js-->
+		<script src="~/assets/js/bootstrap.min.js"></script>
+
+		<!-- bootsnav js -->
+		<script src="~/assets/js/bootsnav.js"></script>
+
+		<!--owl.carousel.js-->
+		<script src="~/assets/js/owl.carousel.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+		<!--Custom JS-->
+		<script src="~/assets/js/custom.js"></script>
 						
 
 									</tbody>

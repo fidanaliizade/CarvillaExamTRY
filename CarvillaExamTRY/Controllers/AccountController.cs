@@ -1,4 +1,5 @@
-﻿using CarvillaExamTRY.Models;
+﻿using CarvillaExamTRY.Helpers;
+using CarvillaExamTRY.Models;
 using CarvillaExamTRY.ViewModels.AccountVMs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,8 @@ namespace CarvillaExamTRY.Controllers
 
                 }
             }
-            
+
+            await userManager.AddToRoleAsync(user, "Admin");
             return RedirectToAction("Login");
         }
         public IActionResult Login()
@@ -80,6 +82,21 @@ namespace CarvillaExamTRY.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> CreateRole()
+        {
+            foreach (UserRole item in Enum.GetValues(typeof(UserRole)))
+            {
+                if(await roleManager.FindByNameAsync(item.ToString()) == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole()
+                    {
+                        Name = item.ToString()
+                    });
+                }
+            }
             return RedirectToAction("Index", "Home");
         }
     }
